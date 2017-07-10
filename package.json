@@ -1,0 +1,25 @@
+{
+  "name": "react-antd-swissgear",
+  "version": "0.0.1",
+  "description": "scaffold",
+  "main": "index.js",
+  "scripts": {
+    "test": "start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hehangfighting/react-antd-swissgear.git"
+  },
+  "keywords": [
+    "react",
+    "antd",
+    "redux",
+    "scaffold"
+  ],
+  "author": "HeHang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hehangfighting/react-antd-swissgear/issues"
+  },
+  "homepage": "https://github.com/hehangfighting/react-antd-swissgear#readme"
+}
