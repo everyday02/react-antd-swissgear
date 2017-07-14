@@ -1,6 +1,6 @@
 import React from 'react';
 import { Layout, Row, Col, Icon, Badge, Menu, Dropdown, Avatar, Popover } from 'antd';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const { Header } = Layout;
 
@@ -65,7 +65,9 @@ class commonHeader extends React.Component {
           <Col span={3}>
             <Dropdown overlay={menu}>
               <a className="ant-dropdown-link" href="#">
-                <Avatar style={{ verticalAlign: 'middle'}}>{username}</Avatar> <Icon type="down" />
+                <Avatar style={{ verticalAlign: 'middle' }} >
+                  {username}
+                </Avatar> <Icon type="down" />
               </a>
             </Dropdown>
           </Col>
@@ -75,4 +77,4 @@ class commonHeader extends React.Component {
   }
 }
 
-export default withRouter(commonHeader);
+export default commonHeader;

@@ -40,12 +40,13 @@ module.exports = {
         test: /\.(png|jpeg|jpg|gif)$/,
         loader: 'file-loader?name=img/[hash].[ext]'
       }, {
-        test: /\.(scss|css)$/,
+        test: /\.(scss|css|less)$/,
         use: [
           'style-loader',
           'css-loader',
           'resolve-url-loader',
-          { loader: 'sass-loader', options: { sourceMap: true } }
+          { loader: 'sass-loader', options: { sourceMap: true } },
+          'less-loader'
         ]
       }
     ]

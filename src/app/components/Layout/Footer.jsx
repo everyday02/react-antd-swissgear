@@ -8,7 +8,7 @@ export default class commonFooter extends React.Component {
   render() {
     return (
       <Footer style={{ textAlign: 'center' }}>
-        xxxx 版权所有 © 2015 xxxxxx.com
+        HeHang 版权所有 © 2015 xxxxxx.com
       </Footer>
     );
   }
