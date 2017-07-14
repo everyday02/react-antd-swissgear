@@ -29,3 +29,17 @@ http://rapapi.org/platform/home.do 可以试试这个，好像不错。
 ├── README.md
 └── yarn.lock
 ```
+
+
+
+
+#### 借鉴项目
+
+* [react-redux-universal-hot-example](https://github.com/erikras/react-redux-universal-hot-example)
+  > route定义；
+
+* [react-redux-webpack2](https://github.com/hyy1115/react-redux-webpack2)
+  > 热替换
+
+* [reactSPA](https://github.com/MuYunyun/reactSPA)
+  > 外观布局;
