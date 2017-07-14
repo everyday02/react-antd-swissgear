@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Route, HashRouter as Router } from 'react-router-dom';
 import createHistory from 'history/createHashHistory';
 
-import homeContainer from 'containers/Home/Home';
+import { Home } from 'containers';
 
 const history = createHistory();
 
@@ -20,7 +20,7 @@ export default class App extends React.Component {
         <Route
           render={({ location }) => (
             <div key={location.pathname}>
-              <Route location={location} exact path="/" component={homeContainer} />
+              <Route location={location} exact path="/" component={Home} />
             </div>
           )
       } />
