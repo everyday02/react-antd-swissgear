@@ -7,12 +7,15 @@ module.exports = {
   devtool: 'source-map',
   entry: [
     'react-hot-loader/patch',
-    './index.jsx'
+    './src/index.jsx'
   ],
   output: {
     publicPath: '/',
     path: path.join(__dirname, 'dist'),
     filename: 'bunlde.[hash].js'
+  },
+  resolve: {
+    extensions: ['.js', '.jsx', '.json']
   },
   externals: {
   // jquery: 'window.jQuery'

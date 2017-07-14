@@ -91,13 +91,14 @@ module.exports = {
     "react/jsx-no-target-blank": 0,
     "react/require-extension": 0,
     "react/self-closing-comp": 0,
+    "react/prop-types": 0,
     "react/jsx-indent": [
       2,
-      "tab"
+      2// "tab"
     ],
     "react/jsx-indent-props": [
       2,
-      "tab"
+      2 // "tab"
     ],
     "react/prefer-stateless-function": 0,
     // "redux-saga/no-yield-in-race": 2,
