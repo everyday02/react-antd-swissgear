@@ -48,20 +48,20 @@ export default class App extends React.Component {
           </Menu>
         </Sider>
         <Layout>
-          <Header style={{ background: '#fff', padding: 0 }}>
+          <Header style={{ background: '#fff', padding: 0, height: 48, lineHeight: '48px' }}>
             <Icon
               className="trigger"
               type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
               onClick={this.toggle}
             />
           </Header>
-          <Content style={{ margin: '0px 16px 20px 16px', overflow: 'initial' }}>
-            <Breadcrumb style={{ margin: '12px 0' }}>
+          <Content style={{ margin: '24px', overflow: 'initial' }}>
+            <Breadcrumb style={{ margin: '0px 0px 18px 0px' }}>
               <Breadcrumb.Item>Home</Breadcrumb.Item>
               <Breadcrumb.Item>List</Breadcrumb.Item>
               <Breadcrumb.Item>App</Breadcrumb.Item>
             </Breadcrumb>
-            <div style={{ background: '#fff', padding: 24, minHeight: 380 }}>
+            <div style={{ background: '#fff', padding: 24, minHeight: 540 }}>
               {getRoutes()}
             </div>
           </Content>

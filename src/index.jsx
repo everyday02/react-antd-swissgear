@@ -4,10 +4,11 @@ import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import { HashRouter as Router } from 'react-router-dom';
 import createHistory from 'history/createHashHistory';
-import styles from './theme/styles';
 
 import Store from './config/store';
 import App from './app/App';
+
+import styles from './theme/styles';
 
 const history = createHistory();
 const hotRender = (Aplication) => {
