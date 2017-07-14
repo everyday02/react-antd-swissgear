@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Layout, Menu, Icon } from 'antd';
+import { Layout, Menu, Icon, Breadcrumb } from 'antd';
 
 import getRoutes from '../config/route';
 
@@ -55,10 +55,17 @@ export default class App extends React.Component {
               onClick={this.toggle}
             />
           </Header>
-          <Content style={{ margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280 }}>
-            {getRoutes()}
+          <Content style={{ margin: '0px 16px 20px 16px', overflow: 'initial' }}>
+            <Breadcrumb style={{ margin: '12px 0' }}>
+              <Breadcrumb.Item>Home</Breadcrumb.Item>
+              <Breadcrumb.Item>List</Breadcrumb.Item>
+              <Breadcrumb.Item>App</Breadcrumb.Item>
+            </Breadcrumb>
+            <div style={{ background: '#fff', padding: 24, minHeight: 380 }}>
+              {getRoutes()}
+            </div>
           </Content>
-          <Footer style={{ textAlign: 'center' }}>
+          <Footer style={{ textAlign: 'center', background: '#fff' }}>
             Ant Design ©2016 Created by Ant UED
           </Footer>
         </Layout>
