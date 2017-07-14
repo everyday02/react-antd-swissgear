@@ -2,7 +2,6 @@ const path = require('path');
 const webpack = require('webpack'); // 引入webpack，使用webpack内置插件
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const NODE_ENV = process.env.NODE_ENV || 'dev';
-
 module.exports = {
   devtool: 'source-map',
   entry: [
@@ -12,10 +11,21 @@ module.exports = {
   output: {
     publicPath: '/',
     path: path.join(__dirname, 'dist'),
-    filename: 'bunlde.[hash].js'
+    filename: '[name].js'
   },
+  // alias是配置全局的路径入口名称，只要涉及到下面配置的文件路径，可以直接用定义的单个字母表示整个路径
   resolve: {
-    extensions: ['.js', '.jsx', '.json']
+    extensions: ['.js', '.jsx', '.less', '.scss', '.css'],
+    modules: [
+        path.join(__dirname, 'node_modules'),
+        path.join(__dirname, 'src')
+    ],
+    alias: {
+      actions: path.join(__dirname, 'src/app/actions'),
+      components: path.join(__dirname, 'src/app/components'),
+      containers: path.join(__dirname, 'src/app/containers'),
+      reducers: path.join(__dirname, 'src/app/reducers')
+    }
   },
   externals: {
   // jquery: 'window.jQuery'
@@ -44,13 +54,11 @@ module.exports = {
   },
   devServer: {
     hot: true,
+    // hotOnly: true,
     // 开启服务器的模块热替换（HMR）
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
     historyApiFallback: true,
-    // 输出文件的路径
-    publicPath: '/',
-    // 和上文output的"publicPath"值保持一致
     port: 8080
   },
   plugins: [
