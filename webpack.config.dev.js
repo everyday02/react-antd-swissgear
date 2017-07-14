@@ -54,7 +54,7 @@ module.exports = {
   },
   devServer: {
     hot: true,
-    // hotOnly: true,
+    hotOnly: true,
     // 开启服务器的模块热替换（HMR）
     contentBase: path.join(__dirname, 'dist'),
     compress: true,

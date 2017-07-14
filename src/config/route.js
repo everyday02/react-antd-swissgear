@@ -1,21 +1,14 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route } from 'react-router';
+import { HashRouter as Router } from 'react-router-dom';
+import createHistory from 'history/createHashHistory';
 
-import Layout from './components/Layout/index';
-// import Home from '@/views/Home';
+import { Home } from 'containers';
 
-export const childRoutes = [
-  {
-    path: '/home',
-    component: null,
-    exactly: true
-  }
-];
+const history = createHistory();
 
-const routes = (
-  <Switch>
-    <Route path="/" component={Layout} />
-  </Switch>
+export default (store) => (
+  <Router history={history}>
+    <Route path="/" component={Home} ></Route>
+  </Router>
 );
-
-export default routes;
