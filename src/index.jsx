@@ -6,11 +6,11 @@ import { AppContainer } from 'react-hot-loader';
 import Store from './config/store';
 import App from './app/App';
 
-const hotRender = (Component) => {
+const hotRender = (Aplication) => {
   render(
     <AppContainer>
       <Provider store={Store}>
-        <Component />
+        <Aplication />
       </Provider>
     </AppContainer>,
     document.getElementById('root')

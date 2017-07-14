@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack'); // 引入webpack，使用webpack内置插件
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const NODE_ENV = process.env.NODE_ENV || 'dev';
+
 module.exports = {
   devtool: 'source-map',
   entry: [
@@ -21,10 +22,7 @@ module.exports = {
         path.join(__dirname, 'src')
     ],
     alias: {
-      actions: path.join(__dirname, 'src/app/actions'),
-      components: path.join(__dirname, 'src/app/components'),
-      containers: path.join(__dirname, 'src/app/containers'),
-      reducers: path.join(__dirname, 'src/app/reducers')
+      '@': path.join(__dirname, 'src/app')
     }
   },
   externals: {
@@ -54,7 +52,7 @@ module.exports = {
   },
   devServer: {
     hot: true,
-    hotOnly: true,
+    // hotOnly: true,
     // 开启服务器的模块热替换（HMR）
     contentBase: path.join(__dirname, 'dist'),
     compress: true,

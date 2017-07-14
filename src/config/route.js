@@ -3,7 +3,7 @@ import { Route } from 'react-router';
 import { HashRouter as Router } from 'react-router-dom';
 import createHistory from 'history/createHashHistory';
 
-import { Home } from 'containers';
+import { Home } from '@/containers';
 
 const history = createHistory();
 
