@@ -6,9 +6,9 @@ import ReactEcharts from 'echarts-for-react';
 import echarts from 'echarts';
 import moment from 'moment';
 
-const dateArray = []
-for (let i = 0; i <= 7; i += 1 ) {
-  dateArray.push(moment(new Date() - (7 - i) * 24 * 3600 * 1000).format('YYYY-MM-DD'))
+const dateArray = [];
+for (let i = 0; i <= 7; i += 1) {
+  dateArray.push(moment(new Date() - (7 - i) * 24 * 3600 * 1000).format('YYYY-MM-DD')) // eslint-disable-line
 }
 const option = {
     title: {

@@ -7,7 +7,8 @@ import b4 from '&/images/Home/chutian.jpg';
 
 import EchartsViews from './EchartsViews';
 import EchartsProjects from './EchartsProjects';
-import './index.less';
+
+require('./Home.less');
 
 export default class Home extends React.Component {
     render() {
@@ -82,7 +83,7 @@ export default class Home extends React.Component {
                 <Card>
                   <div className="pb-m">
                     <h3>建站日志</h3>
-                    <small>2个待完成，1个正在进行中</small>
+                    <small>{ '2个待完成，1个正在进行中' }</small>
                   </div>
                   <a className="card-tool"><Icon type="sync" /></a>
                   <Timeline>
