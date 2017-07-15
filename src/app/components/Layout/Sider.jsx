@@ -1,21 +1,16 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Layout, Menu, Icon } from 'antd';
-import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 // import swissgear from '&/logo.png';
 
 const { Sider } = Layout;
 
-@connect(
-  (state) => state,
-  (dispatch) => bindActionCreators({}, dispatch)
-)
 export default class LayoutSider extends React.Component {
 
   render() {
     const { collapsed } = this.props;
-    const pathname = window.location.hash.replace('#', '');
+    const pathname = window.location.pathname;
+    // const pathname = window.location.hash.replace('#', '');
     return (
       <Sider
         trigger={null}
@@ -28,7 +23,7 @@ export default class LayoutSider extends React.Component {
           <i style={{ fontSize: '24px' }} className="iconfont icon-maomi" />
         </div>
         <Menu theme="dark" mode="inline" defaultSelectedKeys={[pathname]}>
-          <Menu.Item key="1">
+          <Menu.Item key="/">
             <Link to="/">
               <Icon type="home" />
               <span>首页</span>
