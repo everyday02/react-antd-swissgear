@@ -1,9 +1,10 @@
 import React from 'react';
 import { Layout, Menu, Icon } from 'antd';
+// import swissgear from '&/logo.png';
 
 const { Sider } = Layout;
 
-export default class LayoutFooter extends React.Component {
+export default class LayoutSider extends React.Component {
 
   render() {
     const { collapsed } = this.props;
@@ -13,19 +14,21 @@ export default class LayoutFooter extends React.Component {
         collapsible
         collapsed={collapsed}
       >
-        <div className="logo" />
+        <div className="logo" >
+          <h3>项目LOGO</h3>
+        </div>
         <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
           <Menu.Item key="1">
-            <Icon type="user" />
-            <span>nav 1</span>
+            <Icon type="home" />
+            <span>首页</span>
           </Menu.Item>
           <Menu.Item key="2">
-            <Icon type="video-camera" />
-            <span>nav 2</span>
+            <Icon type="file-text" />
+            <span>可编辑表格</span>
           </Menu.Item>
           <Menu.Item key="3">
-            <Icon type="upload" />
-            <span>nav 3</span>
+            <Icon type="heart-o" />
+            <span>项目地址</span>
           </Menu.Item>
         </Menu>
       </Sider>

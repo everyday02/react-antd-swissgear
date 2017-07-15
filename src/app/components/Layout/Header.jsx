@@ -1,7 +1,11 @@
 import React from 'react';
-import { Layout, Icon } from 'antd';
+import { Layout, Icon, Menu } from 'antd';
+import { Link } from 'react-router-dom';
+
+require('./Header.scss');
 
 const { Header } = Layout;
+const { SubMenu } = Menu;
 
 export default class LayoutHeader extends React.Component {
 
@@ -15,12 +19,21 @@ export default class LayoutHeader extends React.Component {
   render() {
     const { onToggle, collapsed } = this.props;
     return (
-      <Header style={{ background: '#fff', padding: 0, height: 48, lineHeight: '48px' }}>
+      <Header className="layout-header">
         <Icon
           className="trigger"
           type={collapsed ? 'menu-unfold' : 'menu-fold'}
           onClick={onToggle}
         />
+        <Menu mode="horizontal" className="user-menus" onClick={this.clear}>
+          <SubMenu
+            title={<span><Icon type="user" />管理员</span>}
+          >
+            <Menu.Item key="logOut">
+              <Link to="/login" >退出</Link>
+            </Menu.Item>
+          </SubMenu>
+        </Menu>
       </Header>
     );
   }

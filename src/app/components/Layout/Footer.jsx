@@ -8,7 +8,7 @@ export default class LayoutFooter extends React.Component {
   render() {
     return (
       <Footer style={{ textAlign: 'center', background: '#fff' }}>
-        React antd swissgear ©2016 Created by HeHang
+        React antd swissgear ©2017 Created by HeHang
       </Footer>
     );
   }
