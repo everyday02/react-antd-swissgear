@@ -15,7 +15,9 @@ export default class LayoutSider extends React.Component {
         collapsed={collapsed}
       >
         <div className="logo" >
-          <h3>项目LOGO</h3>
+          {collapsed ? '' : 'Swissgear ' }
+          &nbsp;
+          <i style={{ fontSize: '24px' }} className="iconfont icon-maomi" />
         </div>
         <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
           <Menu.Item key="1">

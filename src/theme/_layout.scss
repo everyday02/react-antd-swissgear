@@ -1,0 +1,41 @@
+html, body, #root, .ant-layout {
+  height: 100%;
+  background: #f5f5f5;
+}
+
+#root {
+  .trigger {
+    font-size: 18px;
+    line-height: 48px;
+    padding: 0 16px;
+    cursor: pointer;
+    transition: color .3s;
+  }
+
+  .trigger:hover {
+    color: #333;
+  }
+
+  .logo {
+    color: #bbb;
+    height: 32px;
+    margin: 16px;
+    font-size: 21px;
+    overflow: hidden;
+    font-weight: 100;
+    line-height: 32px;
+    border-radius: 6px;
+
+    h3 {
+      color: #898989;
+      font-weight: 400;
+      line-height: 32px;
+      text-align: center;
+      white-space: nowrap;
+    }
+  }
+
+  .ant-layout-footer {
+    padding: 12px 50px;
+  }
+}
