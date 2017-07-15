@@ -1,10 +1,9 @@
 import React from 'react';
-import { Layout, Row, Col, Icon, Badge, Menu, Dropdown, Avatar, Popover } from 'antd';
-import { Link } from 'react-router-dom';
+import { Layout, Icon } from 'antd';
 
 const { Header } = Layout;
 
-class commonHeader extends React.Component {
+export default class LayoutHeader extends React.Component {
 
   handleLogOut = () => {
     const { logout } = this.props;
@@ -14,67 +13,15 @@ class commonHeader extends React.Component {
   }
 
   render() {
-    // const { profile } =  this.props;
-    const profile = {
-      user: {
-        name: '张三'
-      }
-    };
-    const username = profile.user ? profile.user.name : '';
-    const menu = (
-      <Menu>
-        <Menu.Item>
-          选项1
-        </Menu.Item>
-        <Menu.Item>
-          选项2
-        </Menu.Item>
-        <Menu.Item>
-          <a onClick={this.handleLogOut}>注销</a>
-        </Menu.Item>
-      </Menu>
-    );
-
-    const content = (
-      <div>
-        <p>Content</p>
-        <p>Content</p>
-        <p>Content</p>
-        <p>Content</p>
-        <p>Content</p>
-      </div>
-    );
-
+    const { onToggle, collapsed } = this.props;
     return (
-      <Header style={{ background: '#fff', padding: 0 }}>
-        <Row type="flex" justify="end" align="middle">
-          <Col span={3}>
-            <Badge className="header-icon" count={5}>
-              <Link to="/mailbox">
-                <Icon type="mail" />
-              </Link>
-            </Badge>
-            <Popover content={content} title="Title" trigger="click">
-              <Badge className="header-icon" dot>
-                <a href="#">
-                  <Icon type="notification" />
-                </a>
-              </Badge>
-            </Popover>
-          </Col>
-          <Col span={3}>
-            <Dropdown overlay={menu}>
-              <a className="ant-dropdown-link" href="#">
-                <Avatar style={{ verticalAlign: 'middle' }} >
-                  {username}
-                </Avatar> <Icon type="down" />
-              </a>
-            </Dropdown>
-          </Col>
-        </Row>
+      <Header style={{ background: '#fff', padding: 0, height: 48, lineHeight: '48px' }}>
+        <Icon
+          className="trigger"
+          type={collapsed ? 'menu-unfold' : 'menu-fold'}
+          onClick={onToggle}
+        />
       </Header>
-    )
+    );
   }
 }
-
-export default commonHeader;

@@ -3,12 +3,12 @@ import { Layout } from 'antd';
 
 const { Footer } = Layout;
 
-export default class commonFooter extends React.Component {
+export default class LayoutFooter extends React.Component {
 
   render() {
     return (
-      <Footer style={{ textAlign: 'center' }}>
-        HeHang 版权所有 © 2015 xxxxxx.com
+      <Footer style={{ textAlign: 'center', background: '#fff' }}>
+        React antd swissgear ©2016 Created by HeHang
       </Footer>
     );
   }

@@ -8,7 +8,7 @@ import createHistory from 'history/createHashHistory';
 import Store from './config/store';
 import App from './app/App';
 
-import styles from './theme/styles';
+require('./theme/styles');
 
 const history = createHistory();
 const hotRender = (Aplication) => {
