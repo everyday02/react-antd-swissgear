@@ -34,9 +34,7 @@ export default class App extends React.Component {
             collapsed={collapsed}
           />
           <Content >
-            <div style={{ background: '#fff', padding: 24, minHeight: 540 }}>
-              {getRoutes()}
-            </div>
+            {getRoutes()}
           </Content>
           <Footer />
         </Layout>

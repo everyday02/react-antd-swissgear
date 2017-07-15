@@ -1,12 +1,16 @@
 const path = require('path');
 const webpack = require('webpack'); // 引入webpack，使用webpack内置插件
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const TransferWebpackPlugin = require('transfer-webpack-plugin');
 const NODE_ENV = process.env.NODE_ENV || 'dev';
+
+const ANTD_THEME = require('./src/config/antd.theme');
 
 module.exports = {
   devtool: 'source-map',
   entry: [
     'react-hot-loader/patch',
+    './src/theme/styles.scss',
     './src/index.jsx'
   ],
   output: {
@@ -22,7 +26,8 @@ module.exports = {
         path.join(__dirname, 'src')
     ],
     alias: {
-      '@': path.join(__dirname, 'src/app')
+      '@': path.join(__dirname, 'src/app'),   // 程序入口
+      '&': path.join(__dirname, 'static')     // 静态文件
     }
   },
   externals: {
@@ -37,16 +42,23 @@ module.exports = {
         use: 'babel-loader'
       },
       {
-        test: /\.(png|jpeg|jpg|gif)$/,
+        test: /\.(svg|eot|woff|woff2|ttf|png|jpeg|jpg|gif)$/,
         loader: 'file-loader?name=img/[hash].[ext]'
       }, {
-        test: /\.(scss|css|less)$/,
+        test: /\.(less)$/,
         use: [
           'style-loader',
           'css-loader',
           'resolve-url-loader',
-          { loader: 'sass-loader', options: { sourceMap: true } },
-          'less-loader'
+          { loader: 'less-loader', options: { sourceMap: true, modifyVars: ANTD_THEME } }
+        ]
+      }, {
+        test: /\.(css|scss)$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          'resolve-url-loader',
+          { loader: 'sass-loader', options: { sourceMap: true } }
         ]
       }
     ]
@@ -62,10 +74,15 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
+      favicon: path.join(__dirname, 'static/images/logo.ico'),
       title: 'react-antd-swissgear',
       template: 'src/index.html',
       filename: 'index.html'
     }),
+    // 把指定文件夹下的文件复制到发布目录，这样可以通过地址栏静态访问
+    new TransferWebpackPlugin([
+      { from: 'static', to: 'static' }
+    ], path.resolve(__dirname, '')),
     new webpack.HotModuleReplacementPlugin(),
     // 开启全局的模块热替换（HMR）
     new webpack.NamedModulesPlugin(),
