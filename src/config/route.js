@@ -1,8 +1,11 @@
 import React from 'react';
-import { Route } from 'react-router';
+import { Route, Switch } from 'react-router-dom';
 
-import { Home } from '@/containers';
+import { Home, User } from '@/containers';
 
 export default (store) => (
-  <Route path="/" component={Home} ></Route>
+  <Switch>
+    <Route path="/" exact component={Home} ></Route>
+    <Route path="/user" component={User} ></Route>
+  </Switch>
 );

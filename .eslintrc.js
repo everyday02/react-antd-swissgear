@@ -78,7 +78,9 @@ module.exports = {
     "jsx-a11y/no-interactive-element-to-noninteractive-role": 0,
     "max-len": 0,
     "newline-per-chained-call": 0,
-    "no-console": 1,
+    "no-console": ['warn', {
+      allow: ['info', 'warn', 'error']
+    }],
     "no-use-before-define": 0,
     "prefer-template": 2,
     "class-methods-use-this": 0,
