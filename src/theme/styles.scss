@@ -1,2 +1,9 @@
 @import "_layout.scss";
 @import "/static/iconfont/swissgear/iconfont.css";
+@import "_antd-override.scss";
+@import "_variables.scss";
+@import "_color.scss";
+@import "_tag.scss";
+a {
+  // color: white;
+}
