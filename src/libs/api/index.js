@@ -1,3 +1,5 @@
+import NProgress from 'nprogress'
+
 function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
     return response;
@@ -22,15 +24,19 @@ export default (
   } else if (Object.keys(body).length) {
     queries = Object.keys(body).map((key) => `?${encodeURIComponent(key)}=${encodeURIComponent(body[key])}`).join('&');
   }
-
+  NProgress.inc(0.2);
   return fetch(`${requestUrl}${queries}`, config)
     .then(checkStatus)
     .then((response) => response.json().then((json) => ({ json, response })))
     .then(({ json, response }) => {
+      NProgress.done(true);
       if (!response.ok) {
         return Promise.reject(json);
       }
       return json;
     })
-    .catch((err) => Promise.reject(err));
+    .catch((err) => () => {
+      NProgress.done(true);
+      return Promise.reject(err);
+    });
 };
