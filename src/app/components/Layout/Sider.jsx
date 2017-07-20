@@ -3,6 +3,8 @@ import { Layout, Menu, Icon } from 'antd';
 import { Link } from 'react-router-dom';
 // import swissgear from '&/logo.png';
 
+require('./Sider.scss');
+
 const { Sider } = Layout;
 
 export default class LayoutSider extends React.Component {
@@ -13,6 +15,7 @@ export default class LayoutSider extends React.Component {
     // const pathname = window.location.hash.replace('#', '');
     return (
       <Sider
+        className="swissgear-sider"
         trigger={null}
         collapsible
         collapsed={collapsed}
@@ -33,6 +36,12 @@ export default class LayoutSider extends React.Component {
             <Link to="/user">
               <Icon type="user" />
               <span>用户管理</span>
+            </Link>
+          </Menu.Item>
+          <Menu.Item key="/guestbook">
+            <Link to="/guestbook">
+              <Icon type="book" />
+              <span>留言版</span>
             </Link>
           </Menu.Item>
           {/*
