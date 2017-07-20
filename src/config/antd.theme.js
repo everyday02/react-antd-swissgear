@@ -3,5 +3,6 @@
 
 module.exports = {
   '@primary-color': '#333',
+  '@tooltip-color': '#fff',
   '@icon-url': '\'/static/iconfont/antd/iconfont\''
 };
