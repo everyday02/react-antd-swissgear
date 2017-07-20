@@ -10,7 +10,7 @@ module.exports = {
   devtool: 'source-map',
   entry: [
     'react-hot-loader/patch',
-    './src/theme/styles.scss',
+    // './src/theme/styles.scss',
     './src/index.jsx'
   ],
   output: {
@@ -26,7 +26,7 @@ module.exports = {
         path.join(__dirname, 'src')
     ],
     alias: {
-      '@': path.join(__dirname, 'src/app'),   // 程序入口
+      '@': path.join(__dirname, 'src/app'),   // app根路径
       '&': path.join(__dirname, 'static')     // 静态文件
     }
   },

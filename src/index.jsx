@@ -10,6 +10,8 @@ import createHistory from 'history/createBrowserHistory';
 import configureStore from './config/store';
 import App from './app/App';
 
+require('./theme/styles.scss');
+
 const history = createHistory();
 const store = configureStore(history);
 
