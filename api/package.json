@@ -1,0 +1,25 @@
+{
+  "name": "mock",
+  "version": "0.0.1",
+  "description": "a mock server ",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "mock",
+    "server"
+  ],
+  "author": "HeHang",
+  "license": "ISC",
+  "dependencies": {
+    "Faker": "^0.7.2",
+    "dyson": "~0.1",
+    "dyson-generators": "^0.1.1",
+    "dyson-image": "^0.1.3",
+    "mockjs": "^1.0.1-beta3"
+  },
+  "devDependencies": {
+    "dyson": "^0.1.7"
+  }
+}
