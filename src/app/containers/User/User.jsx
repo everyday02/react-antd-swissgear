@@ -1,9 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Table, message, Tooltip, Icon } from 'antd';
+import { Table, Modal, message, Tooltip, Icon } from 'antd';
 
 import actions from '@/actions';
+
+import EditForm from './EditForm';
 
 @connect(
   (state) => state,
@@ -15,39 +17,54 @@ export default class User extends React.Component {
     super(props);
     this.state = {
       currentPage: 1,
-      pageSize: 10
+      pageSize: 10,
+      record: {},
+      editFormVisible: false
     };
-    this.handlePageChange = this.handlePageChange.bind(this);
+    this.fetchList = this.fetchList.bind(this);
+    this.handleModal = this.handleModal.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
-    this.handleShowSizeChange = this.handleShowSizeChange.bind(this);
 
-    this.props.list(this.currentPage, this.pageSize);
+    this.props.list(this.state.currentPage, this.state.pageSize);
   }
 
-  handlePageChange(page, pageSize) {
-    this.props.list(page, pageSize);
+  fetchList(currentPage, pageSize) {
+    this.props.list(currentPage, pageSize);
     this.setState({
-      currentPage: page,
+      currentPage,
       pageSize
     });
   }
 
-  handleShowSizeChange(current, pageSize) {
-    this.props.list(1, pageSize);
-    this.setState({
-      currentPage: 1,
-      pageSize
+  handleModal(key, form) {
+    form.validateFields((err, values) => {
+      if (err) return;
+      if (key === 'ok') {
+        this.props.put(this.state.record.id, values).then((result) => {
+          message.success('更新成功');
+          this.fetchList(this.state.currentPage, this.state.pageSize);
+        });
+      }
+      this.setState({
+        editFormVisible: false
+      });
     });
   }
 
-  handleUpdate() {
-    this.props.put('430000198507283051');
-    message.success('更新成功');
+  handleUpdate(record) {
+    this.setState({
+      record: record,
+      editFormVisible: true
+    });
   }
 
-  handleDelete() {
-    message.success('删除成功');
+  handleDelete(id) {
+    this.props.del(id).then((result) => {
+      console.info(result);
+      message.success('删除成功');
+      this.fetchList(this.state.currentPage, this.state.pageSize);
+    });
   }
 
   renderTable() {
@@ -70,7 +87,7 @@ export default class User extends React.Component {
       dataIndex: 'email',
       key: 'email',
     }, {
-      title: '访问ip',
+      title: '访问IP',
       dataIndex: 'ip',
       key: 'ip',
     }, {
@@ -82,7 +99,7 @@ export default class User extends React.Component {
             <Icon
               type="edit"
               className="blue a-hover size"
-              onClick={this.handleUpdate}
+              onClick={() => this.handleUpdate(record)}
             />
           </Tooltip>
           &nbsp;&nbsp;
@@ -90,13 +107,19 @@ export default class User extends React.Component {
             <Icon
               type="delete"
               className="red a-hover size"
-              onClick={this.handleDelete}
+              onClick={() => Modal.confirm({
+                  title: '提示',
+                  content: `确定删除用户${record.name}吗?`,
+                  onOk: () => this.handleDelete(record.id)
+                })
+              }
             />
           </Tooltip>
         </span>
       )
   }];
     return (<Table
+      rowKey="id"
       dataSource={datas}
       columns={columns}
       locale={{ emptyText: '还没有数据' }}
@@ -107,8 +130,8 @@ export default class User extends React.Component {
         pageSizeOptions: ['10', '20', '40'],
         current: this.state.currentPage,
         pageSize: this.state.pageSize,
-        onChange: this.handlePageChange,
-        onShowSizeChange: this.handleShowSizeChange,
+        onChange: (page, pageSize) => this.fetchList(page, pageSize),
+        onShowSizeChange: (currentPage, pageSize) => this.fetchList(1, pageSize),
         total: total
       }}
     />);
@@ -118,6 +141,12 @@ export default class User extends React.Component {
     return (
       <div>
         {this.renderTable()}
+        <EditForm
+          title="编辑"
+          record={this.state.record}
+          onClick={this.handleModal}
+          visible={this.state.editFormVisible}
+        />
       </div>
     );
   }
