@@ -1,13 +1,37 @@
-import NProgress from 'nprogress'
+import nprogress from 'nprogress';
+import { message } from 'antd';
+import 'whatwg-fetch';
 
+// 默认错误处理函数。
+function autoErrorHandler(err) {
+  if (err.response) {
+    parseContentType(err.response).then((data) => {
+      if (data.msg) message.error(data.msg);
+      else message.error(err.message);
+    });
+  } else {
+    message.error(err.message);
+  }
+  throw err;
+}
+
+// 断网状态下，不会走此函数
 function checkStatus(response) {
+  nprogress.done(true);
   if (response.status >= 200 && response.status < 300) {
     return response;
   }
-
   const error = new Error(response.statusText);
   error.response = response;
-  return response.json().then((errorMessage) => Promise.reject(errorMessage));
+  throw error;
+}
+
+function parseContentType(response) {
+  const contentType = response.headers.get('content-type');
+  if (contentType && contentType.indexOf('application/json') !== -1) {
+    return response.json();
+  }
+  return response.text();
 }
 
 export default (
@@ -24,19 +48,15 @@ export default (
   } else if (Object.keys(body).length) {
     queries = Object.keys(body).map((key) => `?${encodeURIComponent(key)}=${encodeURIComponent(body[key])}`).join('&');
   }
-  NProgress.inc(0.2);
-  return fetch(`${requestUrl}${queries}`, config)
+
+  nprogress.inc(0.2); // 页面顶部进度条
+  return fetch(`${requestUrl}${queries}`, { ...config, method })
     .then(checkStatus)
-    .then((response) => response.json().then((json) => ({ json, response })))
-    .then(({ json, response }) => {
-      NProgress.done(true);
-      if (!response.ok) {
-        return Promise.reject(json);
-      }
-      return json;
-    })
-    .catch((err) => () => {
-      NProgress.done(true);
-      return Promise.reject(err);
+    .then(parseContentType)
+    .catch((err) => {
+      nprogress.done(true);
+      throw err;
     });
 };
+
+export { autoErrorHandler };

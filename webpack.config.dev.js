@@ -26,6 +26,7 @@ module.exports = {
         path.join(__dirname, 'src')
     ],
     alias: {
+      '#': path.join(__dirname, 'src'),    // src根目录
       '@': path.join(__dirname, 'src/app'),   // app根路径
       '&': path.join(__dirname, 'static')     // 静态文件
     }
