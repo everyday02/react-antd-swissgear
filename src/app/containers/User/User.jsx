@@ -39,16 +39,16 @@ export default class User extends React.Component {
 
   handleModal(key, form) {
     form.validateFields((err, values) => {
-      if (err) return;
       if (key === 'ok') {
+        if (err) return;
         this.props.put(this.state.record.id, values).then((result) => {
           message.success('更新成功');
           this.fetchList(this.state.currentPage, this.state.pageSize);
         });
       }
-      this.setState({
-        editFormVisible: false
-      });
+    });
+    this.setState({
+      editFormVisible: false
     });
   }
 
@@ -141,12 +141,14 @@ export default class User extends React.Component {
     return (
       <div>
         {this.renderTable()}
-        <EditForm
-          title="编辑"
-          record={this.state.record}
-          onClick={this.handleModal}
-          visible={this.state.editFormVisible}
-        />
+        {this.state.editFormVisible ? (
+          <EditForm
+            title="编辑"
+            record={this.state.record}
+            onClick={this.handleModal}
+          />
+          ) : ''
+        }
       </div>
     );
   }

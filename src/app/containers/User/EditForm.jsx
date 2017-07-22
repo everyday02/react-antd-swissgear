@@ -6,21 +6,8 @@ const Option = Select.Option;
 
 class EditForm extends React.Component {
 
-  state = { visible: false };
-
-  showModal = () => {
-    this.setState({
-      visible: true,
-    });
-  }
-  hideModal = () => {
-    this.setState({
-      visible: false,
-    });
-  }
-
   render() {
-    const { title, visible, onClick, form } = this.props;
+    const { title, onClick, form } = this.props;
     const { getFieldDecorator } = form;
     const formItemLayout = {
       labelCol: {
@@ -36,7 +23,7 @@ class EditForm extends React.Component {
     return (
       <Modal
         title={title}
-        visible={visible}
+        visible
         onOk={() => onClick('ok', this.props.form)}
         onCancel={() => onClick('cancel', this.props.form)}
         okText="确认"
