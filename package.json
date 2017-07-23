@@ -4,7 +4,8 @@
   "description": "scaffold",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --config ./webpack.config.dev.js"
+    "dev": "cross-env NODE_ENV=dev webpack-dev-server --config ./webpack.config.dev.js",
+    "prod": "cross-env NODE_ENV=prod webpack --config ./webpack.config.prod.js"
   },
   "repository": "git+https://github.com/hehangfighting/react-antd-swissgear.git",
   "keywords": [
@@ -21,10 +22,7 @@
   "homepage": "https://github.com/hehangfighting/react-antd-swissgear#readme",
   "dependencies": {
     "antd": "^2.12.0",
-    "babel": "^6.23.0",
-    "babel-cli": "^6.24.1",
     "history": "^4.6.3",
-    "less": "^2.7.2",
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
     "nprogress": "^0.2.0",
@@ -36,14 +34,17 @@
     "react-router-redux": "^5.0.0-alpha.6",
     "redux": "^3.7.1",
     "redux-actions": "^2.2.1",
-    "redux-devtools": "^3.4.0",
-    "redux-devtools-dock-monitor": "^1.1.2",
-    "redux-devtools-extension": "^2.13.2",
-    "redux-devtools-log-monitor": "^1.3.0",
     "redux-thunk": "^2.2.0",
     "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
+    "less": "^2.7.2",
+    "babel": "^6.23.0",
+    "babel-cli": "^6.24.1",
+    "redux-devtools": "^3.4.0",
+    "redux-devtools-dock-monitor": "^1.1.2",
+    "redux-devtools-extension": "^2.13.2",
+    "redux-devtools-log-monitor": "^1.3.0",
     "babel-core": "^6.25.0",
     "babel-eslint": "^7.2.1",
     "babel-loader": "^7.1.1",
@@ -53,6 +54,8 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
+    "clean-webpack-plugin": "^0.1.16",
+    "cross-env": "^5.0.1",
     "css-loader": "^0.28.4",
     "echarts": "^3.6.2",
     "echarts-for-react": "^1.4.4",
