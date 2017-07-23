@@ -17,6 +17,7 @@ app.all('*', (req, res, next) => {
 
 // 用户管理
 app.get('/api/users', user.list);
+app.post('/api/users', user.post);
 app.put('/api/users/:userId', user.put);
 app.delete('/api/users/:userId', user.del);
 

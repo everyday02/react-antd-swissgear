@@ -1,4 +1,5 @@
 const _ = require('lodash');
+const Mock = require('mockjs');
 
 const model = require('../model/user.js');
 const pageHelper = require('../libs/pageHelper');
@@ -15,12 +16,12 @@ const list = (req, res) => {
   });
 };
 
-const del = (req, res) => {
-  const userId = req.params.userId;
-  datas = _.filter(datas, (row) => row.id !== userId);
-  total = datas.length;
-  res.send({ msg: '删除成功' });
-  // res.status(400).send({ msg: '删除失败' });
+const post = (req, res) => {
+  const user = req.body;
+  user.id = Mock.Random.id();
+  user.ip = Mock.Random.ip();
+  datas = [user].concat(datas);
+  res.send({ msg: '新增成功' });
 };
 
 const put = (req, res) => {
@@ -31,8 +32,17 @@ const put = (req, res) => {
   res.send({ msg: '更新成功' });
 };
 
+const del = (req, res) => {
+  const userId = req.params.userId;
+  datas = _.filter(datas, (row) => row.id !== userId);
+  total = datas.length;
+  res.send({ msg: '删除成功' });
+  // res.status(400).send({ msg: '删除失败' });
+};
+
 module.exports = {
   list,
+  post,
   put,
   del
 };
