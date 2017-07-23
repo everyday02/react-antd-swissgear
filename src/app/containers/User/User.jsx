@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Table, Modal, message, Tooltip, Icon } from 'antd';
+import { Table, Modal, Button, Row, message, Tooltip, Icon } from 'antd';
 
 import actions from '@/actions';
 
@@ -19,10 +19,12 @@ export default class User extends React.Component {
       currentPage: 1,
       pageSize: 10,
       record: {},
+      modalType: 'post',     // post || put
       editFormVisible: false
     };
     this.fetchList = this.fetchList.bind(this);
     this.handleModal = this.handleModal.bind(this);
+    this.handleAdd = this.handleAdd.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
 
@@ -38,23 +40,32 @@ export default class User extends React.Component {
   }
 
   handleModal(key, form) {
+    const callback = (result) => {
+      message.success(result.msg);
+      this.fetchList(this.state.currentPage, this.state.pageSize);
+    };
     form.validateFields((err, values) => {
       if (key === 'ok') {
         if (err) return;
-        this.props.put(this.state.record.id, values).then((result) => {
-          message.success('更新成功');
-          this.fetchList(this.state.currentPage, this.state.pageSize);
-        });
+        if (this.state.modalType === 'post') this.props.post(values).then((result) => callback(result));
+        else this.props.put(this.state.record.id, values).then((result) => callback(result));
       }
+      this.setState({ editFormVisible: false });
     });
+  }
+
+  handleAdd() {
     this.setState({
-      editFormVisible: false
+      record: null,
+      modalType: 'post',
+      editFormVisible: true
     });
   }
 
   handleUpdate(record) {
     this.setState({
       record: record,
+      modalType: 'put',
       editFormVisible: true
     });
   }
@@ -140,10 +151,13 @@ export default class User extends React.Component {
   render() {
     return (
       <div>
+        <Row className="text-right padding-type-01">
+          <Button onClick={this.handleAdd}>添加用户</Button>
+        </Row>
         {this.renderTable()}
         {this.state.editFormVisible ? (
           <EditForm
-            title="编辑"
+            modalType={this.state.modalType}
             record={this.state.record}
             onClick={this.handleModal}
           />

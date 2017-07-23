@@ -11,6 +11,11 @@ const list = (offset = 1, psize = 10) => (dispatch, getState, api) => {
   });
 };
 
+const post = (record) => (dispatch, getState, api) =>
+  api('/users', 'POST', record)
+    .then((result) => result)
+    .catch((err) => autoErrorHandler(err));
+
 const put = (userId, record) => (dispatch, getState, api) =>
   api(`/users/${userId}`, 'PUT', record)
     .then((result) => result)
@@ -23,6 +28,7 @@ const del = (userId) => (dispatch, getState, api) =>
 
 export default {
   list,
+  post,
   del,
   put,
 };

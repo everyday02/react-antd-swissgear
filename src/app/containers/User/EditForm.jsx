@@ -7,7 +7,7 @@ const Option = Select.Option;
 class EditForm extends React.Component {
 
   render() {
-    const { title, onClick, form } = this.props;
+    const { modalType, onClick, form } = this.props;
     const { getFieldDecorator } = form;
     const formItemLayout = {
       labelCol: {
@@ -22,7 +22,7 @@ class EditForm extends React.Component {
 
     return (
       <Modal
-        title={title}
+        title={modalType === 'post' ? '新增' : '修改'}
         visible
         onOk={() => onClick('ok', this.props.form)}
         onCancel={() => onClick('cancel', this.props.form)}
@@ -84,5 +84,8 @@ class EditForm extends React.Component {
 }
 // 参考：https://ant.design/components/form-cn/ From.create 配置项 mapPropsToFields
 export default Form.create({
-  mapPropsToFields: (props) => recordTransformFormData(props.record)
+  mapPropsToFields: (props) => {
+    if (props.modalType === 'add') return {};
+    return recordTransformFormData(props.record);
+  }
 })(EditForm);
