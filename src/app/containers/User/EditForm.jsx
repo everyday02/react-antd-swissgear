@@ -85,7 +85,7 @@ class EditForm extends React.Component {
 // 参考：https://ant.design/components/form-cn/ From.create 配置项 mapPropsToFields
 export default Form.create({
   mapPropsToFields: (props) => {
-    if (props.modalType === 'add') return {};
+    if (props.modalType === 'post') return {};
     return recordTransformFormData(props.record);
   }
 })(EditForm);
