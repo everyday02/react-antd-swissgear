@@ -54,6 +54,7 @@ module.exports = {
     "linebreak-style": 0,
     "comma-dangle": 0,
     "no-unused-vars":[2, { "args": "none" }],
+    "no-unused-expressions": 0,
     "import/imports-first": 0,
     "import/no-unresolved": 0,
     "import/extensions": 0,

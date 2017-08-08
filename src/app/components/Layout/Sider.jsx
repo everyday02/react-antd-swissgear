@@ -38,6 +38,12 @@ export default class LayoutSider extends React.Component {
               <span>用户管理</span>
             </Link>
           </Menu.Item>
+          <Menu.Item key="/btc">
+            <Link to="/btc">
+              <Icon><i className="iconfont icon-btc1" /></Icon>
+              <span>&nbsp;&nbsp;比特币</span>
+            </Link>
+          </Menu.Item>
           <Menu.Item key="/guestbook">
             <Link to="/guestbook">
               <Icon type="book" />

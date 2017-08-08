@@ -18,11 +18,15 @@ module.exports = {
     path: path.join(__dirname, 'dist'),
     filename: '[name].js'
   },
+  externals: {
+    // jquery: 'window.jQuery'
+  },
   // alias是配置全局的路径入口名称，只要涉及到下面配置的文件路径，可以直接用定义的单个字母表示整个路径
   resolve: {
     extensions: ['.js', '.jsx', '.less', '.scss', '.css'],
     modules: [
         path.join(__dirname, 'node_modules'),
+        path.join(__dirname, 'static'),
         path.join(__dirname, 'src')
     ],
     alias: {
@@ -30,9 +34,6 @@ module.exports = {
       '@': path.join(__dirname, 'src/app'),   // app根路径
       '&': path.join(__dirname, 'static')     // 静态文件
     }
-  },
-  externals: {
-  // jquery: 'window.jQuery'
   },
   module: {
     loaders: [

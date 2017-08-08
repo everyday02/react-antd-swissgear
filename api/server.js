@@ -4,6 +4,7 @@ const app = express();                  // 实例化express
 const http = require('http');
 
 const user = require('./routes/user');
+const btc = require('./routes/btc');
 
 app.use(bodyParser.json());
 
@@ -20,6 +21,9 @@ app.get('/api/users', user.list);
 app.post('/api/users', user.post);
 app.put('/api/users/:userId', user.put);
 app.delete('/api/users/:userId', user.del);
+
+// 比特币
+app.get('/api/btcs', btc.list);
 
 // 监听3000端口
 http.createServer(app).listen(3000, () => {
