@@ -4,8 +4,8 @@ import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import { Route, Switch } from 'react-router';
 import { ConnectedRouter } from 'react-router-redux';
-import createHistory from 'history/createBrowserHistory';
-// import createHistory from 'history/createHashHistory';
+// import createHistory from 'history/createBrowserHistory';
+import createHistory from 'history/createHashHistory';
 
 import configureStore from './config/store';
 import App from './app/App';
