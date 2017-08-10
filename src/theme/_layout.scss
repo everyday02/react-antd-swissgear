@@ -6,6 +6,10 @@ html, body, #root, .ant-layout {
   font-family: sans-serif;
 }
 
+.ant-layout {
+  overflow: auto;
+}
+
 #root {
   .trigger {
     font-size: 18px;
